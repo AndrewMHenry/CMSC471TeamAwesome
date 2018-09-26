@@ -1,0 +1,2 @@
+tq/*.pyc  # ignore Python bytecode files
+
