@@ -11,6 +11,9 @@ setuptools.setup(
             'console_scripts': [
                 'twenty=tq.tq:main',
                 ]
-            }
+            },
+        install_requires=[
+            'scikit-learn',
+            ],
         )
 
