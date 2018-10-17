@@ -1,12 +1,9 @@
 import csv
-import collections
 
-# Create a dictionary where the keys are the genres and 
-# the values correspond to the number of times these genres occur
-features = collections.Counter()
 # Create a dictionary where the keys are the name of the movie
 # and values is the list of features
 movieSet = {}
+featureSet = {}
 totalMovies = 0 
 errorBoundary = 0.1
 
@@ -26,15 +23,30 @@ higherBoundary = halfBoundary + (totalMovies * errorBoundary)
 selectedFeature = "none"
 
 # Figure out how many times a feature occurs
+# by populating a feature as the key
+# and a list of movie names as the value
 for movie, genres in movieSet.items():
     for genre in genres:
-        features[genre] += 1
+        if featureSet.has_key(genre):
+            featureSet[genre].append(movie)
+        else:
+            featureSet[genre] = [movie]
 
 # Algorithm to determine optimal feature
-for feature, amount in features.items():
+for feature, movies in featureSet.items():
+    amount = len(movies)
     if( (amount > lowerBoundary) & (amount < higherBoundary) ) :
         selectedFeature = feature 
         break
 
-print "Is the movie " + selectedFeature + "?"
+response = input("Is the movie " + selectedFeature + "? ")
 
+if response == "yes":
+    tmpFeatureSet = {}
+    tmpFeatureSet[selectedFeature] = featureSet[selectedFeature]
+    featureSet = tmpFeatureSet
+    totalMovies = len(featureSet[selectedFeature])
+else:
+    featureSet.pop(selectedFeature, None)
+    totalMovies = totalMovies - len(featureSet[selectedFeature])
+ 
