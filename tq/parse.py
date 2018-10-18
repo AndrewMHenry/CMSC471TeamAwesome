@@ -58,7 +58,7 @@ for i in range(0,totalQuestions):
                 break
 
     questionsAsked += 1
-    response = input("Is the movie " + selectedFeature + "? ")
+    response = raw_input("Is the movie " + selectedFeature + "? ")
 
     for movie, genres in list(movieSet.items()):
         if(selectedFeature in genres):
@@ -94,7 +94,7 @@ for i in range(0,totalQuestions):
 for movie in list(movieSet.keys())[:totalQuestions - questionsAsked]:
     # Just pick the first movie in the set because
     # all these movies contain the same features
-    finalResponse = input("Is the name of the movie " + movie + "? ")
+    finalResponse = raw_input("Is the name of the movie " + movie + "? ")
     
     if(finalResponse == "yes"):
         selectedMovie = movie

@@ -6,3 +6,14 @@ have a result that returns no movies.
   - Try to avoid this case as much as possible.
 Optimize the case where the movies all have the same identical features.
 
+TO DO:
+Implement a way to add weight to a movie
+If the game could not figure out the movie:
+  then at end of game ask user to enter name of the movie.
+  then record that name to a log file and give it a weight(0 or 1)
+  you can increment a movie weight each time users choose it as
+  their favorite movies
+
+
+
+

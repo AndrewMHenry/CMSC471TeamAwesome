@@ -4,7 +4,7 @@ def main():
     win = False
     for i in range(NUM_QUESTIONS):
         try:
-            response = input('Is it a thing? ')
+            response = raw_input('Is it a thing? ')
         except EOFError:
             print('\n\nBye!')
             return
