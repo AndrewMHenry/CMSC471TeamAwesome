@@ -44,14 +44,14 @@ for i in range(0,totalQuestions):
             features[genre] += 1
 
 
-    print(features)
+    # print(features)
 
     # Algorithm to determine optimal feature
     while(selectedFeature == "none"):
         lowerBoundary = lowerBoundary - (totalMovies * errorBoundary)
         higherBoundary = higherBoundary + (totalMovies * errorBoundary)
-        print(lowerBoundary)
-        print(higherBoundary)
+        # print(lowerBoundary)
+        # print(higherBoundary)
         for feature, amount in features.items():
             if( (amount > lowerBoundary) & (amount < higherBoundary) ) :
                 selectedFeature = feature 
