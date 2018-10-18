@@ -17,9 +17,9 @@ totalQuestions = 20
 selectedMovie = "none"
 
 # Parse csv file into movieSet format
-with open('movies.csv', 'rb') as f:
+with open('movies.csv', 'r') as f:
     reader = csv.reader(f, delimiter=',')
-    reader.next()
+    next(reader)
     for row in reader:
         genres = row[2]
         movieSet[row[1]] = genres.split("|")
@@ -59,8 +59,8 @@ for i in range(0,totalQuestions):
 
     questionsAsked += 1
     response = input("Is the movie " + selectedFeature + "? ")
-   
-    for movie, genres in movieSet.items():
+
+    for movie, genres in list(movieSet.items()):
         if(selectedFeature in genres):
             # Remove movie from dictionary if
             # the feature is in the movie but the
@@ -91,13 +91,13 @@ for i in range(0,totalQuestions):
         break
 
 # This algorithm can be slightly optimized
-for j in range(0, totalQuestions - questionsAsked):
+for movie in list(movieSet.keys())[:totalQuestions - questionsAsked]:
     # Just pick the first movie in the set because
     # all these movies contain the same features
-    finalResponse = input("Is the name of the movie " + movieSet.keys()[j] + "? ")
+    finalResponse = input("Is the name of the movie " + movie + "? ")
     
     if(finalResponse == "yes"):
-        selectedMovie = movieSet.keys()[j]; 
+        selectedMovie = movie
         break
     elif(totalMovies == 1):
         break
