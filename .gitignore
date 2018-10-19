@@ -1,2 +1,5 @@
+tq/__pycache__/* # ignore __pycache__
 tq/*.pyc  # ignore Python bytecode files
-
+tq.egg-info/
+tq/.*.swp
+.*.swp
