@@ -92,8 +92,23 @@ def ask_discrete_question(things, discrete_features):
 
 def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
-    ask_question(random.choice(DUMMY_QUESTIONS))
-    return things
+    continuous_features = list(continuous_features)
+    if not continuous_features:
+        ask_question(random.choice(DUMMY_QUESTIONS))
+        return things
+
+    feature = continuous_features[0]
+    values = sorted([
+        features[feature]
+        for thing, features in things.items()])
+    value = values[int(len(values) / 2)]
+
+    result = ask_question(
+            'Is its ' + feature + ' greater than ' + str(value) + '?')
+
+    return {thing: features
+            for thing, features in things.items()
+            if (features[feature] > value) == result}
 
 
 """Final Guess phase helpers."""
