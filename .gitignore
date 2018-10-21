@@ -1,5 +1,11 @@
-tq/__pycache__/* # ignore __pycache__
-tq/*.pyc  # ignore Python bytecode files
+# ignore __pycache__ and its contents
+tq/__pycache__
+tq/__pycache__/*
+
+# ignore Python bytecode files
+tq/*.pyc
 tq.egg-info/
+
+# ignore vim swap files
 tq/.*.swp
 .*.swp
