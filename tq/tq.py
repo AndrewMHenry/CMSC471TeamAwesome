@@ -1,9 +1,11 @@
+from __future__ import print_function
 import collections
 import csv
 import itertools
 import os
 import pdb
 import random
+
 
 """Parameter definitions"""
 
@@ -16,16 +18,17 @@ HALF_COUNT_SCALE = 0.5
 MAX_COUNT_SCALE = 0.5 + RELATIVE_ERROR
 
 DUMMY_QUESTIONS = [
-        'Do you know the muffin man?',
-        'Do you want to be my Battle Buddy?',
-        'Are you SURE the object is a movie?',
-        'Did you bring the merchandise?'
-        ]
+    'Do you know the muffin man?',
+    'Do you want to be my Battle Buddy?',
+    'Are you SURE the object is a movie?',
+    'Did you bring the merchandise?'
+]
 
 MOVIE_CSV = os.path.join(os.path.dirname(__file__), 'movies.csv')
 
 
 """Generic helpers"""
+
 
 def ask_question(question):
     """Interactively ask question to user, returning boolean answer."""
@@ -33,6 +36,7 @@ def ask_question(question):
 
 
 """Discrete phase helpers"""
+
 
 def generate_discrete_pair(things, discrete_features):
     """Create a feature-value pair to ask about.
@@ -90,6 +94,7 @@ def ask_discrete_question(things, discrete_features):
 
 """Continuous phase helpers"""
 
+
 def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
     continuous_features = list(continuous_features)
@@ -113,6 +118,7 @@ def ask_continuous_question(things, continuous_features):
 
 """Final Guess phase helpers."""
 
+
 def make_final_guess(things, discrete_features, continuous_features):
     """Ask identity of object, returning filtered things.
 
@@ -132,6 +138,7 @@ def make_final_guess(things, discrete_features, continuous_features):
 
 
 """Main gameplay function"""
+
 
 def play_game(things, discrete_features, continuous_features):
     """Play Twenty Questions."""
@@ -159,6 +166,7 @@ def play_game(things, discrete_features, continuous_features):
 
 """Movie data"""
 
+
 def create_movie_attributes(genres):
     """Create attribute "dict" for movie with given genres.
 
@@ -169,8 +177,8 @@ def create_movie_attributes(genres):
 
     """
     return collections.defaultdict(
-            lambda: False,
-            {genre: True for genre in genres})
+        lambda: False,
+        {genre: True for genre in genres})
 
 
 # Parse csv file into movieSet format
@@ -185,8 +193,9 @@ def create_movie_things():
 
 """Program entry point"""
 
+
 def main():
-    #pdb.set_trace()
+    # pdb.set_trace()
     things = create_movie_things()
     discrete_features = set(itertools.chain.from_iterable(things.values()))
     continuous_features = []
