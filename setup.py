@@ -14,6 +14,7 @@ setuptools.setup(
             },
         install_requires=[
             'scikit-learn',
+            'prettytable',
             ],
         )
 
