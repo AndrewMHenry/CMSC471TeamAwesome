@@ -27,7 +27,7 @@ with open('movies.csv', 'r') as f:
 totalMovies = len(movieSet)
 
 # Start asking the questions
-for i in range(0,totalQuestions):
+for i in range(0, totalQuestions):
 
     # Set up boundary of when to capture feature
     halfBoundary = totalMovies / 2
@@ -38,11 +38,10 @@ for i in range(0,totalQuestions):
 
     # Figure out how many times a feature occurs
     # by populating a feature as the key
-    # and value is number of times feature occurs 
+    # and value is number of times feature occurs
     for movie, genres in movieSet.items():
         for genre in genres:
             features[genre] += 1
-
 
     # print(features)
 
@@ -53,8 +52,8 @@ for i in range(0,totalQuestions):
         # print(lowerBoundary)
         # print(higherBoundary)
         for feature, amount in features.items():
-            if( (amount > lowerBoundary) & (amount < higherBoundary) ) :
-                selectedFeature = feature 
+            if((amount > lowerBoundary) & (amount < higherBoundary)):
+                selectedFeature = feature
                 break
 
     questionsAsked += 1
@@ -67,15 +66,15 @@ for i in range(0,totalQuestions):
             # user requests for movies without this feature
             if response == "no":
                 movieSet.pop(movie, None)
-                totalMovies -= 1;
+                totalMovies -= 1
         else:
             # Remove movie from dictionary if
             # the feature is not in the movie but the
             # user requests for movies with this feature
             if response == "yes":
                 movieSet.pop(movie, None)
-                totalMovies -= 1;
- 
+                totalMovies -= 1
+
     # If the total number of movies is 1, then
     # that is the only option left
     if(totalMovies == 1):
@@ -86,7 +85,7 @@ for i in range(0,totalQuestions):
     elif(len(set(features.values())) == 1):
         break
     # There are no more movies available, game immediately ends
-    elif not bool(movieSet) :
+    elif not bool(movieSet):
         questionsAsked = 20
         break
 
@@ -95,7 +94,7 @@ for movie in list(movieSet.keys())[:totalQuestions - questionsAsked]:
     # Just pick the first movie in the set because
     # all these movies contain the same features
     finalResponse = raw_input("Is the name of the movie " + movie + "? ")
-    
+
     if(finalResponse == "yes"):
         selectedMovie = movie
         break

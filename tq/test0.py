@@ -29,7 +29,7 @@ except ValueError:
     print('sample size exceeded size of movieList')
 
 print
-print('Below are 1 random generated movies out of 25 movies: ')
+print('Below is a random generated movie out of 25 movies: ')
 printer = PrettyTable()
 printer.field_names = ['title', 'genres']
 for i in range(1):
@@ -53,60 +53,32 @@ Each tume algortihm guess right genre, reduce counter by 1
 In this case we just let the algortihm guess the right movies
 on a multiple attemps scenario
 '''
-attemps = 1
+attempts = 1
 failures = 0
 successes = 0
 rounds = 2
 
-# totalMovies = parser2.get_length_movieSet(parser2.get_movieSet())
+totalMovies = parser2.get_length_movieSet(parser2.get_movieSet())
 
-# Each movie has 3 attemps
-for i in range(1):
+# running game n rounds
+while attempts <= rounds:
 
-    firstPass = True
-    curr_attempts = 1
-    curr_successes = 0
-    curr_failures = 0
-    got_success = False
-    totalMovies = parser2.get_length_movieSet(parser2.get_movieSet())
+    if totalMovies == 0:
+        totalMovies = parser2.get_length_movieSet(parser2.get_movieSet())
+    print('Current Attemps: ' + str(attempts))
 
-    while curr_attempts <= rounds:
-        if firstPass:
-            print('Current Attemps: ' + str(curr_attempts))
-            print('Our guess movie is: ' + random_movies[i])
-            firstPass = False
-        else:
-            print('Current Attemps: ' + str(curr_attempts))
+    output_str = parser2.get_questions(totalMovies, 0.1, 0, 20, 'none')
+    if 'Found movie' in output_str:
+        successes += 1
+        break
 
-        output_str = parser2.get_questions(totalMovies, 0.1, 0, 20, 'none')
-        if 'Found movie' in output_str:
-            curr_successes += 1
-            successes += 1
-            got_success = True
-            break
-
-        else:
-            curr_failures += 1
-            failures += 1
-
-        curr_attempts += 1
-        attemps += 1
-
-    if got_success:
-        print(random_movies[i] + ' current statistics: ')
-        print('[Current Attemps: ' + str(curr_attempts) + ', ' +
-              'current failures: ' + str(curr_failures) + ', ' +
-              'current successes: ' + str(curr_successes) + ']')
     else:
-        print(random_movies[i] + ' Current statistics: ')
-        print('[Current Attemps: ' + str(curr_attempts - 1) + ', ' +
-              'curent failures: ' + str(curr_failures) + ', ' +
-              'current successes: ' + str(curr_successes) + ']')
+        failures += 1
 
-        attemps -= 1
+    attempts += 1
 
 print
-print('General statistics: ')
-print('[Attemps: ' + str(attemps) + ', ' +
+print('Statistics: ')
+print('[Attemps: ' + str(attempts) + ', ' +
       'Failure: ' + str(failures) + ', ' +
       'Success: ' + str(successes) + ']')
