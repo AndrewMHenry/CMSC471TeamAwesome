@@ -11,13 +11,13 @@ python3 -m pip install --user numpy scipy
 python3 -m pip install --user -U scikit-learn
 ```
 
-Set up SciKit automatically
+Set up Project automatically
 ---------------------------
 1. Run
 ```
-python3 -m pip install --user .
+pip3 install --upgrade --user -e .
 ```
 in the root directory of this project, which should
-automatically install scikit-learn and its dependencies.
+automatically install twenty questions and its dependencies.
 
 
