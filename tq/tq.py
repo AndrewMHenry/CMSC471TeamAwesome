@@ -30,7 +30,7 @@ MOVIE_CSV = os.path.join(os.path.dirname(__file__), 'movies.csv')
 """Generic helpers"""
 
 
-def ask_question(question):
+def ask_question(question, expression):
     """Interactively ask question to user, returning boolean answer."""
     return input(question + ' ') == 'yes'
 
@@ -67,11 +67,18 @@ def generate_discrete_pair(things, discrete_features):
         counts = collections.Counter([
             fdict[feature] for fdict in things.values()])
 
+        if len(counts) == 0:
+            raise RuntimeError('counts is empty!')
+
         for value, count in counts.items():
             pair = (feature, value)
+
+            diff = abs(count - half_count)
+            best_diff = abs(best_count - half_count)
+
             if min_count < count < max_count:
                 return pair
-            elif abs(count - half_count) < abs(best_count - half_count):
+            elif best_pair is None or diff < best_diff:
                 best_pair = pair
 
     return best_pair
@@ -79,13 +86,22 @@ def generate_discrete_pair(things, discrete_features):
 
 def ask_discrete_question(things, discrete_features):
     """Ask a discrete question, returning filtered things."""
-    feature, value = generate_discrete_pair(things, discrete_features)
+    discrete_pair = generate_discrete_pair(things, discrete_features)
+    if discrete_pair is None:
+        print(things)
+        print(discrete_features)
+        raise RuntimeError('discrete_pair is None!')
+    feature, value = discrete_pair
 
     if isinstance(value, bool):
-        result = ask_question('Is it ' + feature + '?')
+        result = ask_question(
+                'Is it ' + feature + '?',
+                'features["{}"]'.format(feature))
         value = True
     else:
-        result = ask_question('Is its ' + feature + ' ' + str(value) + '?')
+        result = ask_question(
+                'Is its ' + feature + ' ' + str(value) + '?',
+                'features["{}"] == "{}"'.format(feature, value))
 
     return {thing: features
             for thing, features in things.items()
@@ -99,7 +115,7 @@ def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
     continuous_features = list(continuous_features)
     if not continuous_features:
-        ask_question(random.choice(DUMMY_QUESTIONS))
+        ask_question(random.choice(DUMMY_QUESTIONS), 'True')
         return things
 
     feature = continuous_features[0]
@@ -147,10 +163,10 @@ def play_game(things, discrete_features, continuous_features):
         if len(things) <= 1:
             break
 
+        if not discrete_features:
+            raise RuntimeError('discrete_features empty!')
         print('[{} things left...]'.format(len(things)), end=' ')
 
-        if qnum == NUM_DISCRETE_QUESTIONS:
-            print('\n'.join(sorted(things)))
         if qnum < NUM_DISCRETE_QUESTIONS:
             things = ask_discrete_question(things, discrete_features)
         else:
@@ -190,6 +206,11 @@ def create_movie_things():
         return {name: create_movie_attributes(genres.split('|'))
                 for number, name, genres in reader}
 
+
+MOVIE_THINGS = create_movie_things()
+MOVIE_DISCRETE_FEATURES = set(
+        itertools.chain.from_iterable(MOVIE_THINGS.values()))
+MOVIE_CONTINUOUS_FEATURES = []
 
 """Program entry point"""
 

@@ -10,6 +10,7 @@ setuptools.setup(
         entry_points={
             'console_scripts': [
                 'twenty=tq.tq:main',
+                'player=tq.player:main',
                 ]
             },
         install_requires=[
