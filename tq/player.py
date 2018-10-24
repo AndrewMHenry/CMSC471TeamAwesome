@@ -4,21 +4,6 @@ import os
 
 from tq import tq
 
-class Player(object):
-
-    def __init__(self, movie, features):
-        """Create player thinking of movie with features."""
-        self.movie = movie
-        self.features = features
-
-    def ask_question(self, question):
-        print('Answering question "{}" with `False`...'.format(question))
-        return False
-
-
-num_questions = None
-success = None
-
 
 class Answerer(object):
 
@@ -50,51 +35,26 @@ class Answerer(object):
 
         return answer
 
-def create_callback(
-        movie, features,
-        discrete_features, continuous_features,
-        result):
-    """Create an ask_question override for particular movie.
 
-    The result dict should have keys 'success' and 'num_questions'.
-    The ask_question function will modify these values as necessary,
-    so the caller of create_callback can retrieve these values at
-    the end of the game.
-
-    expression = 'name == "{}"'.format(movie)
-    """
-
-    def ask_question(question, expression):
-        """Behave like tq.ask_question."""
-
-        nonlocal result
-        # register that another question was asked
-        result['num_questions'] += 1
-
-        namespace = {
-                'name': movie,
-                'features': features}
-        answer = eval(expression, namespace, namespace)
-        print('Answering question "{}" with `{}`...'.format(question, answer))
-
-        # register a win if answered "yes" to movie guess
-        if 'name' in expression and answer:
-            result['success'] = True
-
-        return answer
-
-    return ask_question
-
+LOG_FILE = 'report.txt'
+REDUCTION_FACTOR = 100
 
 def main():
     """Run main from tq."""
-    report = ''
-    for movie, features in tq.MOVIE_THINGS.items():
-        result = {
-                'success': False,
-                'num_questions': 0
-                }
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('log_file', default=LOG_FILE, nargs='?')
+    parser.add_argument('reduction_factor', default=REDUCTION_FACTOR, nargs='?')
+    args = parser.parse_args()
 
+    log_file = open(args.log_file, 'w')
+
+    num_successes = 0
+    num_attempts = 0
+
+    for index, (movie, features) in enumerate(tq.MOVIE_THINGS.items()):
+        if index % args.reduction_factor != 0:
+            continue
         answerer = Answerer(
                 movie, features,
                 tq.MOVIE_DISCRETE_FEATURES, tq.MOVIE_CONTINUOUS_FEATURES)
@@ -104,8 +64,16 @@ def main():
             with contextlib.redirect_stdout(output_stream):
                 tq.main()
 
-        print('{},{},{}'.format(
+        log_file.write('{},{},{}\n'.format(
             movie,
             'SUCCESS' if answerer.success else 'FAILURE',
             answerer.num_questions))
 
+        num_attempts += 1
+        num_successes += int(answerer.success)
+
+    log_file.close()
+
+    success_rate = num_successes / num_attempts
+    print('SUCCESSES: {} / {} ({}%)'.format(
+        num_successes, num_attempts, 100.0 * success_rate))
