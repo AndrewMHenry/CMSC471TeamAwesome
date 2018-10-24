@@ -62,7 +62,7 @@ def main():
 
         with open(os.devnull, 'w') as output_stream:
             with contextlib.redirect_stdout(output_stream):
-                tq.main()
+                tq.main(19)
 
         log_file.write('{},{},{}\n'.format(
             movie,

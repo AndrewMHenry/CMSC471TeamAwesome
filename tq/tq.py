@@ -156,7 +156,9 @@ def make_final_guess(things, discrete_features, continuous_features):
 """Main gameplay function"""
 
 
-def play_game(things, discrete_features, continuous_features):
+def play_game(
+        things, discrete_features, continuous_features,
+        num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     """Play Twenty Questions."""
     questions_asked = 0
     for qnum in range(NUM_QUESTIONS - 1):
@@ -168,7 +170,7 @@ def play_game(things, discrete_features, continuous_features):
             raise RuntimeError('discrete_features empty!')
         print('[{} things left...]'.format(len(things)), end=' ')
 
-        if qnum < NUM_DISCRETE_QUESTIONS:
+        if qnum < num_discrete_questions:
             things = ask_discrete_question(things, discrete_features)
         else:
             things = ask_continuous_question(things, continuous_features)
@@ -216,9 +218,9 @@ MOVIE_CONTINUOUS_FEATURES = []
 """Program entry point"""
 
 
-def main():
+def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     # pdb.set_trace()
     things = create_movie_things()
     discrete_features = set(itertools.chain.from_iterable(things.values()))
     continuous_features = []
-    play_game(things, discrete_features, continuous_features)
+    play_game(things, discrete_features, continuous_features, num_discrete_questions)
