@@ -23,5 +23,5 @@ color_theme = np.array(['darkgray', 'lightsalmon'])
 plt.subplot(1,1,1)
 plt.scatter(x=X,y=X,c=color_theme[kmeans.labels_], s=6)
 #We really only need to centers of the k means algorithm
-print(kmeans.cluster_centers_)
+print(kmeans.cluster_centers_[0])
 plt.show()

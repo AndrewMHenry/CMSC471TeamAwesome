@@ -1,4 +1,5 @@
 from __future__ import print_function
+from sklearn.cluster import KMeans
 import collections
 import csv
 import itertools
@@ -116,16 +117,27 @@ def ask_discrete_question(things, discrete_features):
 
 def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
-    continuous_features = list(continuous_features)
+    num_clusters = 2
+
+    points = collections.OrderedDict({
+            thing: get_point(features, continuous_features)
+            for thing, features in things.items()})
+
+    array = np.array(list(points.values()))
+
+    #Apply k means algorithm
+    kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(array)
+
+    #Used for testing, but can delete this code
     if not continuous_features:
         ask_question(random.choice(DUMMY_QUESTIONS), 'True')
         return things
 
-    feature = continuous_features[0]
-    values = sorted([
-        features[feature]
-        for thing, features in things.items()])
-    value = values[int(len(values) / 2)]
+    #Right now, kmeans does not return the size of each cluster.
+    #However because there are only two clusters, picking
+    #one cluster over the other doesn't matter since whatever
+    #the user answers, either cluster will be chosen.
+    feature = kmeans.cluster_centers_[0]
 
     result = ask_question(
             'Is its ' + feature + ' greater than ' + str(value) + '?')
