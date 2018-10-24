@@ -129,15 +129,16 @@ def ask_continuous_question(things, continuous_features):
     kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(array)
 
     #Used for testing, but can delete this code
-    if not continuous_features:
-        ask_question(random.choice(DUMMY_QUESTIONS), 'True')
-        return things
+    #if not continuous_features:
+    #    ask_question(random.choice(DUMMY_QUESTIONS), 'True')
+    #    return things
 
     #Right now, kmeans does not return the size of each cluster.
     #However because there are only two clusters, picking
     #one cluster over the other doesn't matter since whatever
     #the user answers, either cluster will be chosen.
-    feature = kmeans.cluster_centers_[0]
+    value = kmeans.cluster_centers_[0]
+    feature = continuous_features[0]
 
     result = ask_question(
             'Is its ' + feature + ' greater than ' + str(value) + '?')
