@@ -16,6 +16,10 @@ setuptools.setup(
         install_requires=[
             'scikit-learn',
             'prettytable',
+            'numpy',
+            'matplotlib',
+            'sklearn',
+            'pandas'
             ],
         )
 
