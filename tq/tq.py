@@ -2,10 +2,13 @@ from __future__ import print_function
 import collections
 import csv
 import itertools
+import numpy as np
 import os
 import pdb
 import random
+import re
 
+from sklearn.cluster import KMeans
 
 """Parameter definitions"""
 
@@ -134,6 +137,36 @@ def ask_continuous_question(things, continuous_features):
 
 """Final Guess phase helpers."""
 
+def get_point(features, continuous_features):
+    """Create point based on continous features of thing."""
+    return [features[feature] for feature in continuous_features]
+
+
+def cluster_things(things, continuous_features):
+    """Return list of lists, representing clusters of things."""
+    num_clusters = 2
+
+    points = collections.OrderedDict({
+            thing: get_point(features, continuous_features)
+            for thing, features in things.items()})
+
+    array = np.array(list(points.values()))
+    kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(array)
+    indices = kmeans.predict(array)
+
+    clusters = [[] for i in range(num_clusters)]
+    for thing, index in zip(points, indices):
+        clusters[index].append(thing)
+
+    return [cluster for cluster in clusters if cluster]
+
+
+def ask_guess_question(guess):
+    """Ask question guessing that the thing is guess."""
+    ask_question(
+            'Are you thinking of "{}"?'.format(guess),
+            'name == "{}"'.format(guess))
+
 
 def make_final_guess(things, discrete_features, continuous_features):
     """Ask identity of object, returning filtered things.
@@ -142,16 +175,25 @@ def make_final_guess(things, discrete_features, continuous_features):
     instead of just making a random choice!
 
     """
-    guess = random.choice(things.keys())
-    result = ask_question('Is it ' + guess + '?')
+    if not continuous_features:
+        return random.choice(list(things))
 
-    if result:
-        return {guess: things[guess]}
-    else:
-        return {thing: features
-                for thing, features in things.items()
-                if thing != guess}
+    while len(things) > 1:
+        clusters = cluster_things(things, continuous_features)
+        if len(clusters) <= 1:
+            break
 
+        max_size = 0
+        biggest_cluster = None
+        for cluster in clusters:
+            size = len(cluster)
+            if size > max_size:
+                max_size = size
+                biggest_cluster = cluster
+
+        things = {thing: things[thing] for thing in biggest_cluster}
+
+    ask_guess_question(list(things)[0])
 
 """Main gameplay function"""
 
@@ -178,9 +220,8 @@ def play_game(
         questions_asked += 1
 
     for thing, number in zip(things, range(NUM_QUESTIONS - questions_asked)):
-        ask_question(
-                'Are you thinking of "{}"?'.format(thing),
-                'name == "{}"'.format(thing))
+        print('Attempting final guess {}'.format(number))
+        make_final_guess(things, discrete_features, continuous_features)
 
 
 """Movie data"""
@@ -206,14 +247,22 @@ def create_movie_things():
     with open(MOVIE_CSV, 'r') as f:
         reader = csv.reader(f, delimiter=',')
         next(reader)
-        return {name: create_movie_attributes(genres.split('|'))
-                for number, name, genres in reader}
-
+        things = {}
+        for number, name, genres in reader:
+            features = create_movie_attributes(genres.split('|'))
+            mo = re.search(r'(?<=\))\d\d\d\d(?=\))', name)
+            if mo:
+                year = mo.group(0)
+            else:
+                year = 1985
+            features['year'] = year
+            things[name] = features
+        return things
 
 MOVIE_THINGS = create_movie_things()
 MOVIE_DISCRETE_FEATURES = set(
         itertools.chain.from_iterable(MOVIE_THINGS.values()))
-MOVIE_CONTINUOUS_FEATURES = []
+MOVIE_CONTINUOUS_FEATURES = ['year']
 
 """Program entry point"""
 
@@ -221,6 +270,7 @@ MOVIE_CONTINUOUS_FEATURES = []
 def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     # pdb.set_trace()
     things = create_movie_things()
-    discrete_features = set(itertools.chain.from_iterable(things.values()))
-    continuous_features = []
+    discrete_features = MOVIE_DISCRETE_FEATURES
+    continuous_features = MOVIE_CONTINUOUS_FEATURES
+
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
