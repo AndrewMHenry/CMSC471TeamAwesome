@@ -158,7 +158,8 @@ def make_final_guess(things, discrete_features, continuous_features):
 
 def play_game(things, discrete_features, continuous_features):
     """Play Twenty Questions."""
-    for qnum in range(NUM_QUESTIONS):
+    questions_asked = 0
+    for qnum in range(NUM_QUESTIONS - 1):
 
         if len(things) <= 1:
             break
@@ -172,12 +173,12 @@ def play_game(things, discrete_features, continuous_features):
         else:
             things = ask_continuous_question(things, continuous_features)
 
-    if len(things) > 1:
-        print('Hmm... too many options.')
-    elif len(things) == 1:
-        print('AHA! It must be ' + list(things)[0] + '!')
-    else:
-        print('Idk')
+        questions_asked += 1
+
+    for thing, number in zip(things, range(NUM_QUESTIONS - questions_asked)):
+        ask_question(
+                'Are you thinking of "{}"?'.format(thing),
+                'name == "{}"'.format(thing))
 
 
 """Movie data"""
