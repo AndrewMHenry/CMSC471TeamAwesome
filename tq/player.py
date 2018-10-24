@@ -52,6 +52,9 @@ def main():
     num_successes = 0
     num_attempts = 0
 
+    for features in tq.MOVIE_THINGS.values():
+        print(features['year'])
+
     for index, (movie, features) in enumerate(tq.MOVIE_THINGS.items()):
         if index % args.reduction_factor != 0:
             continue

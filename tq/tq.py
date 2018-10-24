@@ -250,7 +250,7 @@ def create_movie_things():
         things = {}
         for number, name, genres in reader:
             features = create_movie_attributes(genres.split('|'))
-            mo = re.search(r'(?<=\))\d\d\d\d(?=\))', name)
+            mo = re.search(r'(?<=\()\d\d\d\d(?=\))', name)
             if mo:
                 year = mo.group(0)
             else:

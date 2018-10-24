@@ -1,8 +1,8 @@
-Toy Story (1995),SUCCESS,20
+Toy Story (1995),FAILURE,20
 Before and After (1996),FAILURE,20
 Exit to Eden (1994),FAILURE,20
 Muriel's Wedding (1994),FAILURE,20
-Getaway, The (1994),SUCCESS,20
+Getaway, The (1994),SUCCESS,10
 Princess Caraboo (1994),FAILURE,20
 Stupids, The (1996),FAILURE,20
 Meet Me in St. Louis (1944),FAILURE,20
@@ -14,7 +14,7 @@ Desperate Measures (1998),FAILURE,20
 My Life in Pink (Ma vie en rose) (1997),FAILURE,20
 Madeline (1998),FAILURE,20
 Lolita (1997),FAILURE,20
-American Tail: Fievel Goes West, An (1991),SUCCESS,9
+American Tail: Fievel Goes West, An (1991),SUCCESS,20
 Them! (1954),FAILURE,20
 Prancer (1989),FAILURE,20
 Towering Inferno, The (1974),FAILURE,20
@@ -47,15 +47,15 @@ Pink Panther, The (1963),FAILURE,20
 Gas, Food, Lodging (1992),FAILURE,20
 Over the Top (1987),FAILURE,20
 Lord of the Rings: The Return of the King, The (2003),FAILURE,20
-Agent Cody Banks 2: Destination London (2004),FAILURE,20
+Agent Cody Banks 2: Destination London (2004),SUCCESS,20
 Protocol (1984),FAILURE,20
 Shiri (Swiri) (1999),FAILURE,20
-Super Size Me (2004),SUCCESS,20
+Super Size Me (2004),FAILURE,20
 Thunderbirds (2004),FAILURE,20
 Control Room (2004),FAILURE,20
 New York, New York (1977),FAILURE,20
 Pusher (1996),FAILURE,20
-Starship Troopers 2: Hero of the Federation (2004),SUCCESS,11
+Starship Troopers 2: Hero of the Federation (2004),FAILURE,20
 Bunny Lake Is Missing (1965),FAILURE,20
 Madagascar (2005),FAILURE,20
 Survive Style 5+ (2004),FAILURE,20
@@ -70,24 +70,24 @@ Step Brothers (2008),FAILURE,20
 Splinter (2008),FAILURE,20
 Adventureland (2009),FAILURE,20
 Goods: Live Hard, Sell Hard, The (2009),FAILURE,20
-Planet 51 (2009),FAILURE,20
-How to Train Your Dragon (2010),FAILURE,20
+Planet 51 (2009),SUCCESS,14
+How to Train Your Dragon (2010),SUCCESS,19
 Dragon Ball Z: Dead Zone (Doragon bôru Z 1: Ora no Gohan wo kaese) (1989),FAILURE,20
 Made in Dagenham (2010),FAILURE,20
 Incendies (2010),FAILURE,20
 50/50 (2011),FAILURE,20
 Intouchables (2011),FAILURE,20
 Dragon Ball: Sleeping Princess in Devil's Castle (Doragon bôru: Majinjô no nemuri hime) (1987),FAILURE,20
-Hotel Transylvania (2012),FAILURE,20
-Beautiful Creatures (2013),FAILURE,20
-World's End, The (2013),FAILURE,20
-Guilty of Romance (Koi no tsumi) (2011) ,FAILURE,20
-Free to Play (2014),FAILURE,20
-Coherence (2013),FAILURE,20
+Hotel Transylvania (2012),SUCCESS,20
+Beautiful Creatures (2013),SUCCESS,20
+World's End, The (2013),SUCCESS,13
+Guilty of Romance (Koi no tsumi) (2011) ,SUCCESS,16
+Free to Play (2014),SUCCESS,20
+Coherence (2013),SUCCESS,15
 Still Alice (2014),FAILURE,20
 Tornado! (1996),FAILURE,20
-Too Late for Tears (1949),FAILURE,20
-Trevor Noah: African American (2013),FAILURE,20
+Too Late for Tears (1949),SUCCESS,11
+Trevor Noah: African American (2013),SUCCESS,20
 How to Make Love Like an Englishman (2014),FAILURE,20
 Slow Learners (2015),FAILURE,20
 Exposed (2016),FAILURE,20
@@ -95,4 +95,4 @@ Comedy of the Strict Regime (1993),FAILURE,20
 La La Land (2016),FAILURE,20
 Betting on Zero (2016),FAILURE,20
 The Nut Job 2: Nutty by Nature (2017),FAILURE,20
-Pacific Rim: Uprising (2018),FAILURE,20
+Pacific Rim: Uprising (2018),SUCCESS,9
