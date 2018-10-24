@@ -52,9 +52,6 @@ def main():
     num_successes = 0
     num_attempts = 0
 
-    for features in tq.MOVIE_THINGS.values():
-        print(features['year'])
-
     for index, (movie, features) in enumerate(tq.MOVIE_THINGS.items()):
         if index % args.reduction_factor != 0:
             continue
@@ -65,7 +62,7 @@ def main():
 
         with open(os.devnull, 'w') as output_stream:
             with contextlib.redirect_stdout(output_stream):
-                tq.main(19)
+                tq.main(10)
 
         log_file.write('{},{},{}\n'.format(
             movie,

@@ -139,8 +139,13 @@ def ask_continuous_question(things, continuous_features):
     #the user answers, either cluster will be chosen.
     feature = kmeans.cluster_centers_[0]
 
+    feature = continuous_features[0]
+    centers = [center[0] for center in kmeans.cluster_centers_]
+    value = sum(centers) / len(centers)
+
     result = ask_question(
-            'Is its ' + feature + ' greater than ' + str(value) + '?')
+            'Is its ' + feature + ' greater than ' + str(value) + '?',
+            'features["{}"] > {}'.format(feature, value))
 
     return {thing: features
             for thing, features in things.items()
@@ -264,7 +269,7 @@ def create_movie_things():
             features = create_movie_attributes(genres.split('|'))
             mo = re.search(r'(?<=\()\d\d\d\d(?=\))', name)
             if mo:
-                year = mo.group(0)
+                year = int(mo.group(0))
             else:
                 year = 1985
             features['year'] = year
