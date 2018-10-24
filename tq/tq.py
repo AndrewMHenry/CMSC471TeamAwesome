@@ -137,12 +137,9 @@ def ask_continuous_question(things, continuous_features):
     #However because there are only two clusters, picking
     #one cluster over the other doesn't matter since whatever
     #the user answers, either cluster will be chosen.
-    value = kmeans.cluster_centers_[0]
-    feature = continuous_features[0]
-
     feature = continuous_features[0]
     centers = [center[0] for center in kmeans.cluster_centers_]
-    value = sum(centers) / len(centers)
+    value = int(sum(centers) / len(centers))
 
     result = ask_question(
             'Is its ' + feature + ' greater than ' + str(value) + '?',
