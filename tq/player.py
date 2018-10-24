@@ -44,7 +44,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('log_file', default=LOG_FILE, nargs='?')
-    parser.add_argument('reduction_factor', default=REDUCTION_FACTOR, nargs='?')
+    parser.add_argument('reduction_factor', type=int, default=REDUCTION_FACTOR, nargs='?')
     args = parser.parse_args()
 
     log_file = open(args.log_file, 'w')
