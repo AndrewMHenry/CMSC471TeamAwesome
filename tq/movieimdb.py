@@ -20,3 +20,4 @@ with open('links.csv', 'r') as f:
 
         movieSet[row[0]] = s_result 
 
+print(len(movieSet))
