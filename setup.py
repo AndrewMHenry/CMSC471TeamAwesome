@@ -19,7 +19,8 @@ setuptools.setup(
             'numpy',
             'matplotlib',
             'sklearn',
-            'pandas'
+            'pandas',
+            'IMDbPY'
             ],
         )
 
