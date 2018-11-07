@@ -39,10 +39,12 @@ with open('links.csv', 'r') as f:
                 else:
                     castList = castList + "|" + cast['name']
            
-            csvLine =  row[1] + "," + castList + "," + directorList + "," + str(s_result['runtime'][0]) + "," + str(s_result['rating']) + "\n"
+            csvLine =  row[0] + "," + castList + "," + directorList + "," + str(s_result['runtime'][0]) + "," + str(s_result['rating']) + "\n"
             movieDatabase.write(csvLine) 
             successMovie += 1
             print(str(successMovie) + " out of " + str(numberOfMovies) + " movies found")
         except Exception as error:
+            csvLine = row[0] + "\n"
+            movieDatabase.write(csvLine) 
             print("Something went wrong. Error: " + str(error))
 
