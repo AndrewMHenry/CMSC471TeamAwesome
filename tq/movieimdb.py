@@ -14,7 +14,7 @@ successMovie = 0
 
 # Search for a movie (get a list of Movie objects).
 
-movieDatabase = open("imdbmovie.csv", "w")
+movieDatabase = open("imdbmovie.csv", "w", encoding='utf8')
 
 
 with open('links.csv', 'r') as f:
@@ -39,7 +39,8 @@ with open('links.csv', 'r') as f:
                 else:
                     castList = castList + "|" + cast['name']
            
-            movieDatabase.write(row[1] + "," + castList + "," + directorList + "," + str(s_result['runtime'][0]) + "," + str(s_result['rating']) + "\n") 
+            csvLine =  row[1] + "," + castList + "," + directorList + "," + str(s_result['runtime'][0]) + "," + str(s_result['rating']) + "\n"
+            movieDatabase.write(csvLine) 
             successMovie += 1
             print(str(successMovie) + " out of " + str(numberOfMovies) + " movies found")
         except Exception as error:
