@@ -23,7 +23,7 @@ with open('links.csv', 'r') as f:
     for row in reader:
         numberOfMovies += 1 
         try:        
-            s_result =  ia.get_movie(row[1])
+            s_result =  ia.get_movie('0426592')
 
             directorList = ""
             for director in s_result['director']:
@@ -31,13 +31,18 @@ with open('links.csv', 'r') as f:
                     directorList = director['name']
                 else:
                     directorList = directorList + "|" + director['name']
-        
+       
+
             castList =  ""
             for cast in s_result['cast']:
+                print(cast['name'])
+                print("_____________")
                 if(castList == "") :
                     castList = cast['name']
                 else:
                     castList = castList + "|" + cast['name']
+
+            print(castList)
            
             csvLine =  row[0] + "," + castList + "," + directorList + "," + str(s_result['runtime'][0]) + "," + str(s_result['rating']) + "\n"
             movieDatabase.write(csvLine) 
