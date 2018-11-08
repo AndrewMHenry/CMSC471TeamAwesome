@@ -278,6 +278,7 @@ MOVIE_THINGS = create_movie_things()
 MOVIE_DISCRETE_FEATURES = set(
         itertools.chain.from_iterable(MOVIE_THINGS.values()))
 MOVIE_CONTINUOUS_FEATURES = ['year']
+MOVIE_DISCRETE_FEATURES -= set(MOVIE_CONTINUOUS_FEATURES)
 
 """Program entry point"""
 
@@ -289,3 +290,7 @@ def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     continuous_features = MOVIE_CONTINUOUS_FEATURES
 
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
+
+if __name__ == '__main__':
+    main()
+

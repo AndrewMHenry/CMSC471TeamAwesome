@@ -31,3 +31,11 @@ Note: This is my finding while running a few test:
 
  This can optimize the algo because, it reduces the number of questions 
  asked to users and avoid unnecessary search while we might be closer to Solution
+
+
+Currently, the game mistakenly counts ALL features as discrete features, not
+just the discrete features.  As a result, it can ask discrete questions
+about continuous features, which is not in the specification of our
+algorithm.  However, it might be worth seeing if that is more effective
+later; if so, we could change the algorithm to include some or all
+continuous features in the discrete phase.
