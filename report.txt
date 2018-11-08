@@ -1,0 +1,98 @@
+Toy Story (1995),SUCCESS,15
+Before and After (1996),SUCCESS,20
+Exit to Eden (1994),FAILURE,20
+Muriel's Wedding (1994),FAILURE,20
+Getaway, The (1994),FAILURE,20
+Princess Caraboo (1994),FAILURE,20
+Stupids, The (1996),FAILURE,20
+Meet Me in St. Louis (1944),SUCCESS,16
+Long Kiss Goodnight, The (1996),FAILURE,20
+Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981),FAILURE,20
+Field of Dreams (1989),SUCCESS,20
+First Strike (Police Story 4: First Strike) (Ging chaat goo si 4: Ji gaan daan yam mo) (1996),FAILURE,20
+Desperate Measures (1998),SUCCESS,20
+My Life in Pink (Ma vie en rose) (1997),FAILURE,20
+Madeline (1998),FAILURE,20
+Lolita (1997),FAILURE,20
+American Tail: Fievel Goes West, An (1991),SUCCESS,20
+Them! (1954),SUCCESS,17
+Prancer (1989),FAILURE,20
+Towering Inferno, The (1974),FAILURE,20
+It Came from Outer Space (1953),FAILURE,20
+European Vacation (aka National Lampoon's European Vacation) (1985),FAILURE,20
+Conformist, The (Conformista, Il) (1970),FAILURE,20
+Under the Rainbow (1981),FAILURE,20
+Third Miracle, The (1999),FAILURE,20
+Born Yesterday (1950),FAILURE,20
+Jacob's Ladder (1990),FAILURE,20
+Mission: Impossible II (2000),FAILURE,20
+Battleship Potemkin (1925),SUCCESS,16
+Crew, The (2000),FAILURE,20
+Emperor's New Groove, The (2000),FAILURE,20
+Widow of St. Pierre, The (Veuve de Saint-Pierre, La) (2000),FAILURE,20
+Ice Castles (1978),FAILURE,20
+Accused, The (1988),FAILURE,20
+Millennium (1989),FAILURE,20
+French Lieutenant's Woman, The (1981),FAILURE,20
+Angry Red Planet, The (1959),FAILURE,20
+Don't Look Now (1973),SUCCESS,20
+Enigma (2001),FAILURE,20
+Eight Legged Freaks (2002),SUCCESS,20
+Pride of the Yankees, The (1942),SUCCESS,19
+Quiet American, The (2002),FAILURE,20
+Lost in La Mancha (2002),FAILURE,20
+Man Without a Past, The (Mies vailla menneisyyttä) (2002),FAILURE,20
+Mississippi Masala (1991),FAILURE,20
+Pink Panther, The (1963),FAILURE,20
+Gas, Food, Lodging (1992),FAILURE,20
+Over the Top (1987),FAILURE,20
+Lord of the Rings: The Return of the King, The (2003),FAILURE,20
+Agent Cody Banks 2: Destination London (2004),FAILURE,20
+Protocol (1984),FAILURE,20
+Shiri (Swiri) (1999),FAILURE,20
+Super Size Me (2004),FAILURE,20
+Thunderbirds (2004),FAILURE,20
+Control Room (2004),SUCCESS,20
+New York, New York (1977),SUCCESS,14
+Pusher (1996),FAILURE,20
+Starship Troopers 2: Hero of the Federation (2004),SUCCESS,8
+Bunny Lake Is Missing (1965),FAILURE,20
+Madagascar (2005),SUCCESS,20
+Survive Style 5+ (2004),SUCCESS,12
+7 Faces of Dr. Lao (1964),FAILURE,20
+United 93 (2006),FAILURE,20
+Woods, The (2006),FAILURE,20
+Hannibal Rising (2007),FAILURE,20
+Paranoid Park (2007),FAILURE,20
+Last Winter, The (2006),FAILURE,20
+Love Guru, The (2008),FAILURE,20
+Step Brothers (2008),FAILURE,20
+Splinter (2008),FAILURE,20
+Adventureland (2009),FAILURE,20
+Goods: Live Hard, Sell Hard, The (2009),FAILURE,20
+Planet 51 (2009),FAILURE,20
+How to Train Your Dragon (2010),SUCCESS,18
+Dragon Ball Z: Dead Zone (Doragon bôru Z 1: Ora no Gohan wo kaese) (1989),FAILURE,20
+Made in Dagenham (2010),FAILURE,20
+Incendies (2010),SUCCESS,10
+50/50 (2011),FAILURE,20
+Intouchables (2011),FAILURE,20
+Dragon Ball: Sleeping Princess in Devil's Castle (Doragon bôru: Majinjô no nemuri hime) (1987),FAILURE,20
+Hotel Transylvania (2012),FAILURE,20
+Beautiful Creatures (2013),SUCCESS,20
+World's End, The (2013),FAILURE,20
+Guilty of Romance (Koi no tsumi) (2011) ,SUCCESS,17
+Free to Play (2014),FAILURE,20
+Coherence (2013),FAILURE,20
+Still Alice (2014),FAILURE,20
+Tornado! (1996),FAILURE,20
+Too Late for Tears (1949),SUCCESS,10
+Trevor Noah: African American (2013),SUCCESS,20
+How to Make Love Like an Englishman (2014),FAILURE,20
+Slow Learners (2015),FAILURE,20
+Exposed (2016),FAILURE,20
+Comedy of the Strict Regime (1993),FAILURE,20
+La La Land (2016),FAILURE,20
+Betting on Zero (2016),FAILURE,20
+The Nut Job 2: Nutty by Nature (2017),FAILURE,20
+Pacific Rim: Uprising (2018),FAILURE,20
