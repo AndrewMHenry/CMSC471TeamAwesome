@@ -29,7 +29,7 @@ DUMMY_QUESTIONS = [
 ]
 
 MOVIE_CSV = os.path.join(os.path.dirname(__file__), 'movies.csv')
-
+IMDB_MOVIE_CSV = os.path.join(os.path.dirname(__file__), 'imdbmovie.csv')
 
 """Generic helpers"""
 
@@ -114,6 +114,9 @@ def ask_discrete_question(things, discrete_features):
 
 """Continuous phase helpers"""
 
+def pick_continuous_feature(): 
+    return random.randint(0,3) - 1
+
 
 def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
@@ -128,6 +131,10 @@ def ask_continuous_question(things, continuous_features):
     #Apply k means algorithm
     kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(array)
 
+    #We can improve on this, but the easiest implementation is randomly
+    #selecting the continuous feature to ask about.
+    selected_continuous_feature = pick_continuous_feature() 
+
     #Used for testing, but can delete this code
     #if not continuous_features:
     #    ask_question(random.choice(DUMMY_QUESTIONS), 'True')
@@ -137,8 +144,9 @@ def ask_continuous_question(things, continuous_features):
     #However because there are only two clusters, picking
     #one cluster over the other doesn't matter since whatever
     #the user answers, either cluster will be chosen.
-    feature = continuous_features[0]
-    centers = [center[0] for center in kmeans.cluster_centers_]
+    feature = continuous_features[selected_continuous_feature]
+    
+    centers = [center[selected_continuous_feature] for center in kmeans.cluster_centers_]
     value = int(sum(centers) / len(centers))
 
     result = ask_question(
@@ -233,6 +241,11 @@ def play_game(
             things = ask_continuous_question(things, continuous_features)
 
         questions_asked += 1
+   
+    """No more movies in the dictionary to guess from."""
+    if not things:
+        print('Sorry, we were unable to guess your movie.')
+        return
 
     for thing, number in zip(things, range(NUM_QUESTIONS - questions_asked)):
         print('Attempting final guess {}'.format(number))
@@ -259,10 +272,15 @@ def create_movie_attributes(genres):
 # Parse csv file into movieSet format
 def create_movie_things():
     """Create the things dict needed by play_game from movie data."""
+
+    things = {}
+    """Map movie id to movie name."""
+    movieMap = {}
+
+    """Load data from our original csv file."""
     with open(MOVIE_CSV, 'r') as f:
         reader = csv.reader(f, delimiter=',')
         next(reader)
-        things = {}
         for number, name, genres in reader:
             features = create_movie_attributes(genres.split('|'))
             mo = re.search(r'(?<=\()\d\d\d\d(?=\))', name)
@@ -272,12 +290,30 @@ def create_movie_things():
                 year = 1985
             features['year'] = year
             things[name] = features
-        return things
+            movieMap[number] = name
+
+    """Append to our current data structures using extended data from imdb."""
+    with open(IMDB_MOVIE_CSV, 'r') as f:
+        imdb_reader = csv.reader(f, delimiter=',')
+        next(imdb_reader)
+        for movie_line in imdb_reader:
+            if(len(movie_line) == 5) :
+                movieId = movie_line[0]
+                cast = movie_line[1]
+                director = movie_line[2]
+                runtime = movie_line[3]
+                rating = movie_line[4]
+                features = things[movieMap.get(movieId)]; 
+                features['runtime'] = int(runtime) 
+                features['rating'] = float(rating) 
+                things[movieMap.get(movieId)] = features
+
+    return things
 
 MOVIE_THINGS = create_movie_things()
 MOVIE_DISCRETE_FEATURES = set(
         itertools.chain.from_iterable(MOVIE_THINGS.values()))
-MOVIE_CONTINUOUS_FEATURES = ['year']
+MOVIE_CONTINUOUS_FEATURES = ['year', 'runtime', 'rating']
 MOVIE_DISCRETE_FEATURES -= set(MOVIE_CONTINUOUS_FEATURES)
 
 """Program entry point"""
@@ -288,7 +324,6 @@ def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     things = create_movie_things()
     discrete_features = MOVIE_DISCRETE_FEATURES
     continuous_features = MOVIE_CONTINUOUS_FEATURES
-
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
 
 if __name__ == '__main__':
