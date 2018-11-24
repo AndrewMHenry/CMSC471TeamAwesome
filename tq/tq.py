@@ -14,7 +14,7 @@ from sklearn.cluster import KMeans
 """Parameter definitions"""
 
 NUM_QUESTIONS = 20
-NUM_DISCRETE_QUESTIONS = NUM_QUESTIONS / 2
+NUM_DISCRETE_QUESTIONS = 15 
 
 RELATIVE_ERROR = 0.1
 MIN_COUNT_SCALE = 0.5 - RELATIVE_ERROR
@@ -176,6 +176,7 @@ def cluster_things(things, continuous_features):
             for thing, features in things.items()})
 
     array = np.array(list(points.values()))
+
     kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(array)
     indices = kmeans.predict(array)
 
