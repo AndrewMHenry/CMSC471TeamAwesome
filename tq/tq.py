@@ -114,9 +114,11 @@ def ask_discrete_question(things, discrete_features):
 
 """Continuous phase helpers"""
 
+# Assign weights to how often the continuous feature should
+# be selected. In this case, 0th genre has a 25% chance of being chosen
 def pick_continuous_feature(): 
-    return random.randint(0,3) - 1
-
+    continuous_feature_weight = [0] * 50 + [1] * 25 + [2] * 25 
+    return random.choice(continuous_feature_weight)
 
 def ask_continuous_question(things, continuous_features):
     """Ask a continuous question, returning filtered things."""
