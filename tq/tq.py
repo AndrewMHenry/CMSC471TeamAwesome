@@ -285,7 +285,7 @@ def create_movie_things():
         reader = csv.reader(f, delimiter=',')
         next(reader)
         for number, name, genres in reader:
-            features = create_movie_attributes(genres.split('|'))
+            features = {'genre': tuple(sorted(genres.split('|')))}
             mo = re.search(r'(?<=\()\d\d\d\d(?=\))', name)
             if mo:
                 year = int(mo.group(0))
