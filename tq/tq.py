@@ -68,8 +68,8 @@ def generate_discrete_pair(things, discrete_features):
 
     for feature in discrete_features:
 
-        counts = collections.Counter([
-            fdict[feature] for fdict in things.values()])
+        counts = collections.Counter(itertools.chain.from_iterable([
+            fdict[feature] for fdict in things.values()]))
 
         if len(counts) == 0:
             raise RuntimeError('counts is empty!')
@@ -80,8 +80,11 @@ def generate_discrete_pair(things, discrete_features):
             diff = abs(count - half_count)
             best_diff = abs(best_count - half_count)
 
+            # return current value if count in range
             if min_count < count < max_count:
                 return pair
+
+            # set new best value if new smallest difference
             elif best_pair is None or diff < best_diff:
                 best_pair = pair
 
@@ -97,19 +100,13 @@ def ask_discrete_question(things, discrete_features):
         raise RuntimeError('discrete_pair is None!')
     feature, value = discrete_pair
 
-    if isinstance(value, bool):
-        result = ask_question(
-                'Is it ' + feature + '?',
-                'features["{}"]'.format(feature))
-        value = True
-    else:
-        result = ask_question(
-                'Is its ' + feature + ' ' + str(value) + '?',
-                'features["{}"] == "{}"'.format(feature, value))
+    result = ask_question(
+            'Is ' + value + ' among its ' + feature + '?',
+            '"{}" in features["{}"]'.format(value, feature))
 
     return {thing: features
             for thing, features in things.items()
-            if (features[feature] == value) == result}
+            if (value in features[feature]) == result}
 
 
 """Continuous phase helpers"""
@@ -164,7 +161,16 @@ def ask_continuous_question(things, continuous_features):
 
 def get_point(features, continuous_features):
     """Create point based on continous features of thing."""
-    return [features[feature] for feature in continuous_features]
+    point = []
+    for feature in continuous_features:
+        try:
+            value = features[feature]
+        except KeyError as e:
+            pdb.set_trace()
+            raise e
+        else:
+            point.append(value)
+    return point
 
 
 def cluster_things(things, continuous_features):
@@ -285,7 +291,7 @@ def create_movie_things():
         reader = csv.reader(f, delimiter=',')
         next(reader)
         for number, name, genres in reader:
-            features = {'genre': tuple(sorted(genres.split('|')))}
+            features = {'genres': tuple(sorted(genres.split('|')))}
             mo = re.search(r'(?<=\()\d\d\d\d(?=\))', name)
             if mo:
                 year = int(mo.group(0))
@@ -314,17 +320,24 @@ def create_movie_things():
     return things
 
 MOVIE_THINGS = create_movie_things()
-MOVIE_DISCRETE_FEATURES = set(
+MOVIE_ALL_FEATURES = set(
         itertools.chain.from_iterable(MOVIE_THINGS.values()))
 MOVIE_CONTINUOUS_FEATURES = ['year', 'runtime', 'rating']
-MOVIE_DISCRETE_FEATURES -= set(MOVIE_CONTINUOUS_FEATURES)
+MOVIE_DISCRETE_FEATURES = MOVIE_ALL_FEATURES - set(MOVIE_CONTINUOUS_FEATURES)
+
+"""
+Filter MOVIE_THINGS by movies with all features.
+(This avoids movies that don't have values for some features.)
+"""
+MOVIE_THINGS = {
+        movie: features
+        for movie, features in MOVIE_THINGS.items()
+        if set(features) == MOVIE_ALL_FEATURES}
 
 """Program entry point"""
 
-
 def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
-    # pdb.set_trace()
-    things = create_movie_things()
+    things = MOVIE_THINGS
     discrete_features = MOVIE_DISCRETE_FEATURES
     continuous_features = MOVIE_CONTINUOUS_FEATURES
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
