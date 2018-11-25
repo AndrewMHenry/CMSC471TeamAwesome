@@ -1,0 +1,97 @@
+Toy Story (1995),FAILURE,20
+Before and After (1996),SUCCESS,20
+Exit to Eden (1994),SUCCESS,20
+Muriel's Wedding (1994),FAILURE,20
+Getaway, The (1994),SUCCESS,20
+Princess Caraboo (1994),FAILURE,20
+Arrival, The (1996),FAILURE,20
+Gone with the Wind (1939),SUCCESS,19
+Looking for Richard (1996),SUCCESS,15
+Aliens (1986),SUCCESS,20
+Butch Cassidy and the Sundance Kid (1969),SUCCESS,18
+Beverly Hills Ninja (1997),FAILURE,20
+She's So Lovely (1997),FAILURE,20
+3 Ninjas: High Noon On Mega Mountain (1998),SUCCESS,17
+Pi (1998),FAILURE,20
+Jane Austen's Mafia! (1998),FAILURE,20
+Sixteen Candles (1984),FAILURE,20
+Player, The (1992),FAILURE,20
+Rambo: First Blood Part II (1985),SUCCESS,20
+Meteor (1979),FAILURE,20
+Invasion of the Body Snatchers (1956),SUCCESS,20
+Funny Farm (1988),FAILURE,20
+Brief Encounter (1946),FAILURE,20
+Dogma (1999),FAILURE,20
+Girl, Interrupted (1999),FAILURE,20
+Blood Feast (1963),SUCCESS,20
+Bamba, La (1987),FAILURE,20
+Better Living Through Circuitry (1999),FAILURE,20
+Titan A.E. (2000),SUCCESS,19
+Nurse Betty (2000),FAILURE,20
+Finding Forrester (2000),FAILURE,20
+Series 7: The Contenders (2001),FAILURE,20
+Eight Men Out (1988),FAILURE,20
+Arthur 2: On the Rocks (1988),FAILURE,20
+No Holds Barred (1989),FAILURE,20
+Moscow Does Not Believe in Tears (Moskva slezam ne verit) (1979),FAILURE,20
+Lord of the Flies (1990),FAILURE,20
+Return to Never Land (2002),FAILURE,20
+Jason X (2002),FAILURE,20
+Kid Stays in the Picture, The (2002),FAILURE,20
+Incredible Mr. Limpet, The (1964),SUCCESS,11
+Solaris (2002),FAILURE,20
+Tokyo Decadence (Topâzu) (1992),SUCCESS,20
+House of 1000 Corpses (2003),SUCCESS,20
+Dumb and Dumberer: When Harry Met Lloyd (2003),SUCCESS,20
+Discreet Charm of the Bourgeoisie, The (Charme discret de la bourgeoisie, Le) (1972),SUCCESS,18
+Ninja Scroll (Jûbei ninpûchô) (1995),SUCCESS,19
+Proof (1991),FAILURE,20
+House of Sand and Fog (2003),FAILURE,20
+Broken Wings (Knafayim Shvurot) (2002),FAILURE,20
+Explorers (1985),FAILURE,20
+Crossroads (1986),FAILURE,20
+Picture of Dorian Gray, The (1945),FAILURE,20
+Funny Thing Happened on the Way to the Forum, A (1966),SUCCESS,17
+Greed (1924),FAILURE,20
+Snake in the Eagle's Shadow (Se ying diu sau) (1978),FAILURE,20
+Beowulf (1999),SUCCESS,20
+Story of the Weeping Camel, The (Geschichte vom weinenden Kamel, Die) (2003),SUCCESS,19
+Seven-Per-Cent Solution, The (1976),FAILURE,20
+Sisterhood of the Traveling Pants, The (2005),SUCCESS,20
+Oliver Twist (2005),FAILURE,20
+Glory Road (2006),FAILURE,20
+Break-Up, The (2006),FAILURE,20
+Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan (2006),FAILURE,20
+Ugly Duckling and Me!, The (2006),FAILURE,20
+Valet, The (La doublure) (2006),FAILURE,20
+Diving Bell and the Butterfly, The (Scaphandre et le papillon, Le) (2007),FAILURE,20
+Youth Without Youth (2007),FAILURE,20
+Frozen River (2008),FAILURE,20
+Punisher: War Zone (2008),FAILURE,20
+Young Victoria, The (2009),FAILURE,20
+Taking Woodstock (2009),FAILURE,20
+Alvin and the Chipmunks: The Squeakquel (2009),SUCCESS,16
+Diary of a Wimpy Kid (2010),FAILURE,20
+Easy A (2010),FAILURE,20
+Evangelion: 2.0 You Can (Not) Advance (Evangerion shin gekijôban: Ha) (2009),SUCCESS,18
+Kung Fu Panda 2 (2011),SUCCESS,12
+In Time (2011),SUCCESS,20
+Perfect Sense (2011),FAILURE,20
+Dragon Ball Z: Cooler's Revenge (Doragon bôru Z 5: Tobikkiri no saikyô tai saikyô) (1991),FAILURE,20
+Silver Linings Playbook (2012),FAILURE,20
+Call, The (2013),FAILURE,20
+Blue Jasmine (2013),SUCCESS,20
+Haunter (2013),FAILURE,20
+Walk of Shame (2014),FAILURE,20
+Annabelle (2014),FAILURE,20
+Top Five (2014),FAILURE,20
+Brooklyn (2015),FAILURE,20
+The Malibu Bikini Shop (1986),FAILURE,20
+Scooby-Doo! and the Loch Ness Monster (2004),FAILURE,20
+Scouts Guide to the Zombie Apocalypse (2015),SUCCESS,20
+The Girls (1961),FAILURE,20
+Dad's Army (2016),FAILURE,20
+The Adderall Diaries (2015),FAILURE,20
+Sing (2016),FAILURE,20
+Cheburashka (1971),FAILURE,20
+Jack Whitehall: At Large (2017),FAILURE,20
