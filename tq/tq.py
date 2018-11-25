@@ -36,7 +36,7 @@ MOVIE_CSV = os.path.join(os.path.dirname(__file__), 'movies.csv')
 
 def ask_question(question, expression):
     """Interactively ask question to user, returning boolean answer."""
-    return input(question + ' ') == 'yes'
+    return input(question + ' ').upper().startswith('Y')
 
 
 """Discrete phase helpers"""
