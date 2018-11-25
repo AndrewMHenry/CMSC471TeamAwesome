@@ -63,7 +63,7 @@ def generate_discrete_pair(things, discrete_features):
     half_count = len(things) * HALF_COUNT_SCALE
     max_count = len(things) * MAX_COUNT_SCALE
 
-    best_count = 0
+    best_diff = 0
     best_pair = None
 
     for feature in discrete_features:
@@ -78,7 +78,6 @@ def generate_discrete_pair(things, discrete_features):
             pair = (feature, value)
 
             diff = abs(count - half_count)
-            best_diff = abs(best_count - half_count)
 
             # return current value if count in range
             if min_count < count < max_count:
@@ -87,6 +86,7 @@ def generate_discrete_pair(things, discrete_features):
             # set new best value if new smallest difference
             elif best_pair is None or diff < best_diff:
                 best_pair = pair
+                best_diff = diff
 
     return best_pair
 
@@ -313,8 +313,10 @@ def create_movie_things():
                 runtime = movie_line[3]
                 rating = movie_line[4]
                 features = things[movieMap.get(movieId)]; 
+                features['cast'] = tuple(sorted(cast.split('|')))
+                features['director'] = tuple(sorted(cast.split('|')))
                 features['runtime'] = int(runtime) 
-                features['rating'] = float(rating) 
+                features['rating'] = float(rating)
                 things[movieMap.get(movieId)] = features
 
     return things
