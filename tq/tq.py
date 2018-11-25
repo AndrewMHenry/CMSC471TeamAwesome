@@ -15,6 +15,7 @@ from sklearn.cluster import KMeans
 
 NUM_QUESTIONS = 20
 NUM_DISCRETE_QUESTIONS = 15 
+NUM_CONTINUOUS_QUESTIONS = 4
 
 RELATIVE_ERROR = 0.1
 MIN_COUNT_SCALE = 0.5 - RELATIVE_ERROR
@@ -228,6 +229,26 @@ def make_final_guess(things, discrete_features, continuous_features):
     ask_guess_question(list(things)[0])
 
 """Main gameplay function"""
+
+def run_discrete_phase(
+        things, discrete_features,
+        num_discrete_questions, tolerance):
+    """Implement discrete-question game phase."""
+    current_things = things.copy()
+    questions_asked = 0
+
+    for i in range(num_discrete_questions):
+
+        if len(current_things) <= 1:
+            break
+
+        current_things = ask_discrete_question(
+                current_things, discrete_features)
+        questions_asked += 1
+
+    things.clear()
+    things.update(current_things)
+    return questions_asked
 
 
 def play_game(

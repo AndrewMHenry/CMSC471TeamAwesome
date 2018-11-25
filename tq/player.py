@@ -44,10 +44,16 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('log_file', default=LOG_FILE, nargs='?')
-    parser.add_argument('reduction_factor', type=int, default=REDUCTION_FACTOR, nargs='?')
+    parser.add_argument(
+            'reduction_factor', type=int,
+            default=REDUCTION_FACTOR, nargs='?')
+    parser.add_argument(
+            '-d', type=int,
+            default=None)
     args = parser.parse_args()
 
     log_file = open(args.log_file, 'w')
+    num_discrete_questions = args.d
 
     num_successes = 0
     num_attempts = 0
@@ -62,7 +68,10 @@ def main():
 
         with open(os.devnull, 'w') as output_stream:
             with contextlib.redirect_stdout(output_stream):
-                tq.main(10)
+                if num_discrete_questions is not None:
+                    tq.main(num_discrete_questions)
+                else:
+                    tq.main()
 
         log_file.write('{},{},{}\n'.format(
             movie,
