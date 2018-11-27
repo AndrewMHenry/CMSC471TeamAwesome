@@ -334,7 +334,7 @@ def create_movie_things():
                 rating = movie_line[4]
                 features = things[movieMap.get(movieId)]; 
                 features['cast'] = tuple(sorted(cast.split('|')))
-                features['director'] = tuple(sorted(cast.split('|')))
+                features['director'] = tuple(sorted(director.split('|')))
                 features['runtime'] = int(runtime) 
                 features['rating'] = float(rating)
                 things[movieMap.get(movieId)] = features
@@ -361,6 +361,7 @@ MOVIE_THINGS = {
 def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     things = MOVIE_THINGS
     discrete_features = MOVIE_DISCRETE_FEATURES
+    print(discrete_features)
     continuous_features = MOVIE_CONTINUOUS_FEATURES
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
 
