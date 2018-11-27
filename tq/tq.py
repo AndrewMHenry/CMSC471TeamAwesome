@@ -361,7 +361,6 @@ MOVIE_THINGS = {
 def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
     things = MOVIE_THINGS
     discrete_features = MOVIE_DISCRETE_FEATURES
-    print(discrete_features)
     continuous_features = MOVIE_CONTINUOUS_FEATURES
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
 
