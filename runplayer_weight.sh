@@ -3,7 +3,7 @@ NUM_DISCRETE_QUESTIONS=5
 TQ_PATH=$(pwd)
 FILE_NAME="report_player_weights.txt"
 > $TQ_PATH/saved-logs/$FILE_NAME
-for value in {0..1}
+for value in {0..20}
 do
   YEAR_WEIGHT=$(($RANDOM%101))
   RUNTIME_WEIGHT=$(($RANDOM % (100 - YEAR_WEIGHT)))
