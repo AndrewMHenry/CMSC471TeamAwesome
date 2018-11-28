@@ -1,6 +1,5 @@
 #!/bin/bash
 TQ_PATH=$(pwd)
-echo $TQ_PATH
 > $TQ_PATH/saved-logs/report_player.txt
 for value in {0..20}
 do
