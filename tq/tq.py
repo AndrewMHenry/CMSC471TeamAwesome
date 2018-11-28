@@ -113,8 +113,12 @@ def ask_discrete_question(things, discrete_features):
 
 # Assign weights to how often the continuous feature should
 # be selected. In this case, 0th genre has a 25% chance of being chosen
-def pick_continuous_feature(): 
-    continuous_feature_weight = [0] * 50 + [1] * 25 + [2] * 25 
+def pick_continuous_feature(continuous_features):
+    index = 0
+    continuous_feature_weight = []
+    for feature, weight in continuous_features.items():
+        continuous_feature_weight += [index] * weight 
+        index += 1
     return random.choice(continuous_feature_weight)
 
 def ask_continuous_question(things, continuous_features):
@@ -122,7 +126,7 @@ def ask_continuous_question(things, continuous_features):
     num_clusters = 2
 
     points = collections.OrderedDict({
-            thing: get_point(features, continuous_features)
+            thing: get_point(features, continuous_features.keys())
             for thing, features in things.items()})
 
     array = np.array(list(points.values()))
@@ -132,7 +136,7 @@ def ask_continuous_question(things, continuous_features):
 
     #We can improve on this, but the easiest implementation is randomly
     #selecting the continuous feature to ask about.
-    selected_continuous_feature = pick_continuous_feature() 
+    selected_continuous_feature = pick_continuous_feature(continuous_features) 
 
     #Used for testing, but can delete this code
     #if not continuous_features:
@@ -143,7 +147,7 @@ def ask_continuous_question(things, continuous_features):
     #However because there are only two clusters, picking
     #one cluster over the other doesn't matter since whatever
     #the user answers, either cluster will be chosen.
-    feature = continuous_features[selected_continuous_feature]
+    feature = list(continuous_features.keys())[selected_continuous_feature]
     
     centers = [center[selected_continuous_feature] for center in kmeans.cluster_centers_]
     value = int(sum(centers) / len(centers))
@@ -178,7 +182,7 @@ def cluster_things(things, continuous_features):
     num_clusters = 2
 
     points = collections.OrderedDict({
-            thing: get_point(features, continuous_features)
+            thing: get_point(features, continuous_features.keys())
             for thing, features in things.items()})
 
     array = np.array(list(points.values()))
@@ -344,8 +348,8 @@ def create_movie_things():
 MOVIE_THINGS = create_movie_things()
 MOVIE_ALL_FEATURES = set(
         itertools.chain.from_iterable(MOVIE_THINGS.values()))
-MOVIE_CONTINUOUS_FEATURES = ['year', 'runtime', 'rating']
-MOVIE_DISCRETE_FEATURES = MOVIE_ALL_FEATURES - set(MOVIE_CONTINUOUS_FEATURES)
+MOVIE_CONTINUOUS_FEATURES = {'year':50,'runtime':25,'rating':25}
+MOVIE_DISCRETE_FEATURES = MOVIE_ALL_FEATURES - set(MOVIE_CONTINUOUS_FEATURES.keys())
 
 """
 Filter MOVIE_THINGS by movies with all features.
@@ -358,10 +362,9 @@ MOVIE_THINGS = {
 
 """Program entry point"""
 
-def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS):
+def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS, continuous_features=MOVIE_CONTINUOUS_FEATURES):
     things = MOVIE_THINGS
     discrete_features = MOVIE_DISCRETE_FEATURES
-    continuous_features = MOVIE_CONTINUOUS_FEATURES
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
 
 if __name__ == '__main__':
