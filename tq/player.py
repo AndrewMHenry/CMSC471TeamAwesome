@@ -1,6 +1,7 @@
 import collections
 import contextlib
 import os
+import json
 
 from tq import tq
 
@@ -48,12 +49,25 @@ def main():
             'reduction_factor', type=int,
             default=REDUCTION_FACTOR, nargs='?')
     parser.add_argument(
-            '-d', type=int,
+            '-d', type=int, dest='discrete', help='Integer number of discrete questions',
+            default=tq.NUM_DISCRETE_QUESTIONS)
+    parser.add_argument(
+            '-w', dest='weight', help='File name to continuous json weight',
             default=None)
     args = parser.parse_args()
 
     log_file = open(args.log_file, 'w')
-    num_discrete_questions = args.d
+    num_discrete_questions = args.discrete
+    continuous_weight_file = args.weight
+    continuous_weight = {}
+
+    if continuous_weight_file is not None:
+        continuous_weight_json = open(continuous_weight_file)
+        continuous_weight_string = continuous_weight_json.read()
+        continuous_weight = json.loads(continuous_weight_string)
+        continuous_weight_json.close()
+    else:
+        continuous_weight = tq.MOVIE_CONTINUOUS_FEATURES
 
     num_successes = 0
     num_attempts = 0
@@ -68,10 +82,7 @@ def main():
 
         with open(os.devnull, 'w') as output_stream:
             with contextlib.redirect_stdout(output_stream):
-                if num_discrete_questions is not None:
-                    tq.main(num_discrete_questions)
-                else:
-                    tq.main()
+                tq.main(num_discrete_questions, continuous_weight)
 
         log_file.write('{},{},{}\n'.format(
             movie,
