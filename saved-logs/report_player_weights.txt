@@ -1,0 +1,42 @@
+Year weight: 83, Runtime weight: 9, Rating weight: 8
+SUCCESSES: 35 / 78 (44.871794871794876%)
+Year weight: 99, Runtime weight: 0, Rating weight: 1
+SUCCESSES: 19 / 78 (24.358974358974358%)
+Year weight: 68, Runtime weight: 16, Rating weight: 16
+SUCCESSES: 43 / 78 (55.12820512820513%)
+Year weight: 61, Runtime weight: 22, Rating weight: 17
+SUCCESSES: 52 / 78 (66.66666666666666%)
+Year weight: 53, Runtime weight: 6, Rating weight: 41
+SUCCESSES: 38 / 78 (48.717948717948715%)
+Year weight: 43, Runtime weight: 52, Rating weight: 5
+SUCCESSES: 64 / 78 (82.05128205128204%)
+Year weight: 40, Runtime weight: 59, Rating weight: 1
+SUCCESSES: 64 / 78 (82.05128205128204%)
+Year weight: 58, Runtime weight: 28, Rating weight: 14
+SUCCESSES: 57 / 78 (73.07692307692307%)
+Year weight: 45, Runtime weight: 22, Rating weight: 33
+SUCCESSES: 44 / 78 (56.41025641025641%)
+Year weight: 14, Runtime weight: 49, Rating weight: 37
+SUCCESSES: 37 / 78 (47.43589743589743%)
+Year weight: 22, Runtime weight: 48, Rating weight: 30
+SUCCESSES: 54 / 78 (69.23076923076923%)
+Year weight: 72, Runtime weight: 5, Rating weight: 23
+SUCCESSES: 35 / 78 (44.871794871794876%)
+Year weight: 30, Runtime weight: 52, Rating weight: 18
+SUCCESSES: 63 / 78 (80.76923076923077%)
+Year weight: 74, Runtime weight: 11, Rating weight: 15
+SUCCESSES: 38 / 78 (48.717948717948715%)
+Year weight: 6, Runtime weight: 72, Rating weight: 22
+SUCCESSES: 36 / 78 (46.15384615384615%)
+Year weight: 77, Runtime weight: 20, Rating weight: 3
+SUCCESSES: 46 / 78 (58.97435897435898%)
+Year weight: 78, Runtime weight: 5, Rating weight: 17
+SUCCESSES: 34 / 78 (43.58974358974359%)
+Year weight: 57, Runtime weight: 36, Rating weight: 7
+SUCCESSES: 60 / 78 (76.92307692307693%)
+Year weight: 59, Runtime weight: 7, Rating weight: 34
+SUCCESSES: 35 / 78 (44.871794871794876%)
+Year weight: 89, Runtime weight: 6, Rating weight: 5
+SUCCESSES: 25 / 78 (32.05128205128205%)
+Year weight: 74, Runtime weight: 17, Rating weight: 9
+SUCCESSES: 49 / 78 (62.82051282051282%)
