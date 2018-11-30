@@ -11,5 +11,5 @@ do
   JSON="{\"year\":$YEAR_WEIGHT,\"runtime\":$RUNTIME_WEIGHT,\"rating\":$RATING_WEIGHT}"
   echo $JSON > $TQ_PATH/tq/continuous_weights.json
   echo "Year weight: $YEAR_WEIGHT, Runtime weight: $RUNTIME_WEIGHT, Rating weight: $RATING_WEIGHT" >> $TQ_PATH/saved-logs/$FILE_NAME
-  player -d $NUM_DISCRETE_QUESTIONS -w $TQ_PATH/tq/continuous_weights.json >> $TQ_PATH/saved-logs/$FILE_NAME
+  player -d $NUM_DISCRETE_QUESTIONS -w $TQ_PATH/tq/continuous_weights.json --train >> $TQ_PATH/saved-logs/$FILE_NAME
 done

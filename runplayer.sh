@@ -4,5 +4,5 @@ TQ_PATH=$(pwd)
 for value in {0..20}
 do
   echo "Number of Discrete Questions: $value" >> $TQ_PATH/saved-logs/report_player.txt
-  player -d $value >> $TQ_PATH/saved-logs/report_player.txt
+  player -d $value --train >> $TQ_PATH/saved-logs/report_player.txt
 done

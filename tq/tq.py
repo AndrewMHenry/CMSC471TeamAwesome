@@ -367,11 +367,11 @@ MOVIE_TITLES = list(sorted(MOVIE_THINGS))
 MOVIE_TITLES_TRAINING = [
         MOVIE_TITLES[i]
         for i in range(len(MOVIE_TITLES))
-        if i % TRAINING_DENOMINATOR >= TRAINING_NUMERATOR]
+        if i % TRAINING_DENOMINATOR < TRAINING_NUMERATOR]
 MOVIE_TITLES_TESTING = [
         MOVIE_TITLES[i]
         for i in range(len(MOVIE_TITLES))
-        if i % TRAINING_DENOMINATOR < TRAINING_NUMERATOR]
+        if i % TRAINING_DENOMINATOR >= TRAINING_NUMERATOR]
 
 MOVIE_THINGS_TRAINING = {
         title: MOVIE_THINGS[title]
@@ -382,11 +382,14 @@ MOVIE_THINGS_TESTING = {
 
 """Program entry point"""
 
-def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS, continuous_features=MOVIE_CONTINUOUS_FEATURES, training=True):
+def main(num_discrete_questions=NUM_DISCRETE_QUESTIONS, continuous_features=MOVIE_CONTINUOUS_FEATURES, training=False, testing=False):
     if training:
         things = MOVIE_THINGS_TRAINING
-    else:
+    elif testing:
         things = MOVIE_THINGS_TESTING
+    else:
+        things = MOVIE_THINGS
+
     discrete_features = MOVIE_DISCRETE_FEATURES
     play_game(things, discrete_features, continuous_features, num_discrete_questions)
 

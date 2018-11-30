@@ -54,9 +54,20 @@ def main():
     parser.add_argument(
             '-w', dest='weight', help='File name to continuous json weight',
             default=None)
+    parser.add_argument(
+            '--train',dest='training', help='Flag to determine if the game is ran using training data',
+            default=False, action='store_true'
+            )
+    parser.add_argument(
+            '--test',dest='testing', help='Flag to determine if the game is ran using test data',
+            default=False, action='store_true'
+            )
+
     args = parser.parse_args()
 
     log_file = open(args.log_file, 'w')
+    isTraining = args.training
+    isTesting = args.testing
     num_discrete_questions = args.discrete
     continuous_weight_file = args.weight
     continuous_weight = {}
@@ -82,7 +93,7 @@ def main():
 
         with open(os.devnull, 'w') as output_stream:
             with contextlib.redirect_stdout(output_stream):
-                tq.main(num_discrete_questions, continuous_weight)
+                tq.main(num_discrete_questions, continuous_weight, isTraining, isTesting)
 
         log_file.write('{},{},{}\n'.format(
             movie,
