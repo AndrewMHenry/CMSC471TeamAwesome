@@ -80,10 +80,17 @@ def main():
     else:
         continuous_weight = tq.MOVIE_CONTINUOUS_FEATURES
 
+    if isTraining:
+        things = tq.MOVIE_THINGS_TRAINING
+    elif isTesting:
+        things = tq.MOVIE_THINGS_TESTING
+    else:
+        things = tq.MOVIE_THINGS
+
     num_successes = 0
     num_attempts = 0
 
-    for index, (movie, features) in enumerate(tq.MOVIE_THINGS_TRAINING.items()):
+    for index, (movie, features) in enumerate(things.items()):
         if index % args.reduction_factor != 0:
             continue
         answerer = Answerer(
