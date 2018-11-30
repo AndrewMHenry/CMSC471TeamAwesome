@@ -83,7 +83,7 @@ def main():
     num_successes = 0
     num_attempts = 0
 
-    for index, (movie, features) in enumerate(tq.MOVIE_THINGS.items()):
+    for index, (movie, features) in enumerate(tq.MOVIE_THINGS_TRAINING.items()):
         if index % args.reduction_factor != 0:
             continue
         answerer = Answerer(
