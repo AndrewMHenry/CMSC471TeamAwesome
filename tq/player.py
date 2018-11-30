@@ -46,7 +46,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('log_file', default=LOG_FILE, nargs='?')
     parser.add_argument(
-            'reduction_factor', type=int,
+            '-r', dest='reduction_factor', type=int, help='Factor to scale how many games are played',
             default=REDUCTION_FACTOR, nargs='?')
     parser.add_argument(
             '-d', type=int, dest='discrete', help='Integer number of discrete questions',
